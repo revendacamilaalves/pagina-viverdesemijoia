@@ -60,7 +60,7 @@
 
     <main>
         <!-- Premium VSL Section -->
-        <section class="relative min-h-[85vh] flex flex-col items-center pt-8 pb-12 px-4 md:px-6 overflow-hidden">
+        <section class="relative min-h-[85vh] flex flex-col items-center pt-8 pb-4 px-4 md:px-6 overflow-hidden">
             <!-- Sleek Background Effects -->
             <div class="absolute inset-0 bg-dots opacity-40 z-0 pointer-events-none"></div>
             
@@ -134,7 +134,7 @@
             
             <!-- Immediate CTA under video -->
             <section class="pb-24 bg-[#030303] text-center px-4 relative z-20">
-                <div class="max-w-3xl mx-auto mt-6">
+                <div class="max-w-3xl mx-auto -mt-2 md:mt-2">
                     <a href="#checkout" class="group relative inline-flex items-center justify-center w-full md:w-auto">
                         <!-- Animated glow background -->
                         <div class="absolute -inset-1 rounded-full bg-gradient-to-r from-gold to-yellow-400 opacity-40 blur-lg transition duration-500 group-hover:opacity-75"></div>
@@ -522,6 +522,13 @@
                         if (typeof lucide !== 'undefined') lucide.createIcons(); 
                     } catch(e) { console.error(e); }
                     
+                    // Nudge: pequeno scroll para revelar o botão em celulares se o usuário ainda estiver no topo
+                    if (window.innerWidth < 768 && window.scrollY < 100) {
+                        setTimeout(() => {
+                            window.scrollBy({ top: 120, left: 0, behavior: 'smooth' });
+                        }, 800); // Espera o botão quase terminar de aparecer
+                    }
+                    
                 }, 10000); // 10 Segundos Exatos
             } else {
                 console.error("ERRO CRÍTICO: Div 'delayed-content' não encontrada no HTML!");
@@ -546,12 +553,11 @@
                     const duration = 2500; 
                     let start = null;
 
-                    // Curva de animação (Easing) para ficar super suave (InOutCubic)
+                    // Curva de animação: Começa e segue em velocidade constante, apenas freando no final (EaseOutCubic)
                     const easing = (t, b, c, d) => {
-                        t /= d/2;
-                        if (t < 1) return c/2*t*t*t + b;
-                        t -= 2;
-                        return c/2*(t*t*t + 2) + b;
+                        t /= d;
+                        t--;
+                        return c*(t*t*t + 1) + b;
                     };
 
                     const animation = (currentTime) => {
