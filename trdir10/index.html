@@ -526,6 +526,46 @@
             } else {
                 console.error("ERRO CRÍTICO: Div 'delayed-content' não encontrada no HTML!");
             }
+
+            // Custom Slow Smooth Scroll para botões âncora
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(!targetElement) return;
+
+                    e.preventDefault(); // Previne o scroll imediato padrão
+
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const startPosition = window.pageYOffset;
+                    const distance = targetPosition - startPosition;
+                    
+                    // Tempo de duração do scroll em milissegundos (2500 = 2.5 segundos)
+                    const duration = 2500; 
+                    let start = null;
+
+                    // Curva de animação (Easing) para ficar super suave (InOutCubic)
+                    const easing = (t, b, c, d) => {
+                        t /= d/2;
+                        if (t < 1) return c/2*t*t*t + b;
+                        t -= 2;
+                        return c/2*(t*t*t + 2) + b;
+                    };
+
+                    const animation = (currentTime) => {
+                        if (start === null) start = currentTime;
+                        const timeElapsed = currentTime - start;
+                        const run = easing(timeElapsed, startPosition, distance, duration);
+                        window.scrollTo(0, run);
+                        if (timeElapsed < duration) requestAnimationFrame(animation);
+                    };
+
+                    requestAnimationFrame(animation);
+                });
+            });
+
         });
     </script>
 </body>
