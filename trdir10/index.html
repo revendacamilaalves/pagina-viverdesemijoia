@@ -492,6 +492,41 @@
         </div>
     </main>
 
-    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("VSL Script: Iniciado");
+            
+            // Inicializa ícones visíveis imediatamente
+            try { 
+                if (typeof lucide !== 'undefined') lucide.createIcons(); 
+            } catch(e) { console.error(e); }
+
+            const delayedContent = document.getElementById('delayed-content');
+            if (delayedContent) {
+                console.log("Contagem de 10 segundos ativada...");
+                
+                setTimeout(() => {
+                    console.log("10 segundos passaram! Revelando a página...");
+                    
+                    // Remove display:none
+                    delayedContent.classList.remove('hidden');
+                    
+                    // Força renderização do navegador
+                    void delayedContent.offsetWidth; 
+                    
+                    // Remove opacidade 0 (faz o fade in)
+                    delayedContent.classList.remove('opacity-0');
+                    
+                    // Renderiza os ícones que estavam escondidos
+                    try { 
+                        if (typeof lucide !== 'undefined') lucide.createIcons(); 
+                    } catch(e) { console.error(e); }
+                    
+                }, 10000); // 10 Segundos Exatos
+            } else {
+                console.error("ERRO CRÍTICO: Div 'delayed-content' não encontrada no HTML!");
+            }
+        });
+    </script>
 </body>
 </html>
