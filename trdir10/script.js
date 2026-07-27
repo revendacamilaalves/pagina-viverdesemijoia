@@ -1,18 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize Lucide Icons
-    lucide.createIcons();
-
     // ==========================================
     // CONFIGURAÇÃO DO DELAY DO VSL
     // ==========================================
     
-    // Altere este valor para o tempo do seu pitch.
-    // Exemplo para 15 minutos: 15 * 60 * 1000 = 900000
-    // Atualmente está em 10 segundos para testes: 10 * 1000 = 10000
+    // Tempo em milissegundos (10 segundos = 10000)
     const DELAY_IN_MILLISECONDS = 10000; 
 
     const delayedContent = document.getElementById('delayed-content');
-    const delayStatus = document.getElementById('delay-status');
+
+    // Inicializa ícones que já estão visíveis
+    try {
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    } catch(e) {
+        console.error("Lucide error:", e);
+    }
 
     if (delayedContent) {
         setTimeout(() => {
@@ -20,15 +23,17 @@ document.addEventListener('DOMContentLoaded', () => {
             delayedContent.classList.remove('hidden');
             
             // Força um pequeno reflow para o navegador registrar a remoção do display:none
-            // antes de alterar a opacidade, garantindo a transição suave.
             void delayedContent.offsetWidth; 
             
             // Remove a opacidade 0, fazendo o elemento aparecer suavemente
             delayedContent.classList.remove('opacity-0');
-            delayedContent.classList.add('opacity-100');
-
-            // Esconde a mensagem de teste
-            if(delayStatus) delayStatus.style.display = 'none';
+            
+            // Reinicializa os ícones para renderizar os que estavam escondidos
+            try {
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
+            } catch(e) {}
 
         }, DELAY_IN_MILLISECONDS);
     }
