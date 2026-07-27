@@ -133,8 +133,8 @@
         <div id="delayed-content" class="hidden opacity-0 transition-opacity duration-1000 ease-in-out">
             
             <!-- Immediate CTA under video -->
-            <section class="pb-24 bg-[#030303] text-center px-4 relative z-20">
-                <div class="max-w-3xl mx-auto -mt-2 md:mt-2">
+            <section id="cta-button" class="pb-24 bg-[#030303] text-center px-4 relative z-20">
+                <div class="max-w-3xl mx-auto -mt-6 md:mt-2">
                     <a href="#checkout" class="group relative inline-flex items-center justify-center w-full md:w-auto">
                         <!-- Animated glow background -->
                         <div class="absolute -inset-1 rounded-full bg-gradient-to-r from-gold to-yellow-400 opacity-40 blur-lg transition duration-500 group-hover:opacity-75"></div>
@@ -522,11 +522,15 @@
                         if (typeof lucide !== 'undefined') lucide.createIcons(); 
                     } catch(e) { console.error(e); }
                     
-                    // Nudge: pequeno scroll para revelar o botão em celulares se o usuário ainda estiver no topo
-                    if (window.innerWidth < 768 && window.scrollY < 100) {
+                    // Garante que o botão vai aparecer na tela do celular mesmo que o VTurb tenha rolado a página
+                    if (window.innerWidth < 768) {
                         setTimeout(() => {
-                            window.scrollBy({ top: 120, left: 0, behavior: 'smooth' });
-                        }, 800); // Espera o botão quase terminar de aparecer
+                            const cta = document.getElementById('cta-button');
+                            if(cta) {
+                                // "nearest" rola o mínimo possível apenas para fazer o botão caber na tela
+                                cta.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                            }
+                        }, 500); 
                     }
                     
                 }, 10000); // 10 Segundos Exatos
