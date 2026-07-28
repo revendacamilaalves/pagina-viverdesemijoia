@@ -503,37 +503,47 @@
 
             const delayedContent = document.getElementById('delayed-content');
             if (delayedContent) {
-                console.log("Contagem de 10 segundos ativada...");
+                console.log("Contagem do VSL ativada (18 minutos e 50 segundos)...");
                 
-                setTimeout(() => {
-                    console.log("10 segundos passaram! Revelando a página...");
-                    
-                    // Remove display:none
-                    delayedContent.classList.remove('hidden');
-                    
-                    // Força renderização do navegador
-                    void delayedContent.offsetWidth; 
-                    
-                    // Remove opacidade 0 (faz o fade in)
-                    delayedContent.classList.remove('opacity-0');
-                    
-                    // Renderiza os ícones que estavam escondidos
-                    try { 
-                        if (typeof lucide !== 'undefined') lucide.createIcons(); 
-                    } catch(e) { console.error(e); }
-                    
-                    // Garante que o botão vai aparecer na tela do celular mesmo que o VTurb tenha rolado a página
-                    if (window.innerWidth < 768) {
-                        setTimeout(() => {
-                            const cta = document.getElementById('cta-button');
-                            if(cta) {
-                                // "nearest" rola o mínimo possível apenas para fazer o botão caber na tela
-                                cta.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                            }
-                        }, 500); 
+                // 18 min = 1080 seg + 50 seg = 1130 segundos = 1.130.000 ms
+                const delayInMilliseconds = 1130000; 
+                const startTime = Date.now();
+                let isRevealed = false;
+
+                // Utilizamos setInterval com Date.now() em vez de setTimeout para evitar que 
+                // navegadores de celular (Safari/Chrome) pausem a contagem se a pessoa minimizar a aba
+                const checkTime = setInterval(() => {
+                    if (!isRevealed && (Date.now() - startTime >= delayInMilliseconds)) {
+                        isRevealed = true;
+                        clearInterval(checkTime);
+                        console.log("Tempo exato atingido! Revelando a página...");
+                        
+                        // Remove display:none
+                        delayedContent.classList.remove('hidden');
+                        
+                        // Força renderização do navegador
+                        void delayedContent.offsetWidth; 
+                        
+                        // Remove opacidade 0 (faz o fade in)
+                        delayedContent.classList.remove('opacity-0');
+                        
+                        // Renderiza os ícones que estavam escondidos
+                        try { 
+                            if (typeof lucide !== 'undefined') lucide.createIcons(); 
+                        } catch(e) { console.error(e); }
+                        
+                        // Garante que o botão vai aparecer na tela do celular
+                        if (window.innerWidth < 768) {
+                            setTimeout(() => {
+                                const cta = document.getElementById('cta-button');
+                                if(cta) {
+                                    cta.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                                }
+                            }, 500); 
+                        }
                     }
-                    
-                }, 10000); // 10 Segundos Exatos
+                }, 1000); // Checa o relógio absoluto a cada 1 segundo
+                
             } else {
                 console.error("ERRO CRÍTICO: Div 'delayed-content' não encontrada no HTML!");
             }
