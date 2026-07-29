@@ -1,10 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
-    // CONFIGURAÇÃO DO DELAY DO VSL
+    // CONFIGURAÇÃO DO DELAY DO VSL (Sincronizado com VTurb)
     // ==========================================
     
-    // Tempo em milissegundos (10 segundos = 10000)
-    const DELAY_IN_MILLISECONDS = 10000; 
+    // 10 seg (PARA TESTE)
+    const SECONDS_TO_DISPLAY = 10;
+    let isRevealed = false;
 
     const delayedContent = document.getElementById('delayed-content');
 
@@ -18,23 +19,33 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (delayedContent) {
-        setTimeout(() => {
-            // Remove a classe 'hidden' que esconde o elemento do DOM
-            delayedContent.classList.remove('hidden');
+        const checkTime = setInterval(() => {
+            if (isRevealed) return;
             
-            // Força um pequeno reflow para o navegador registrar a remoção do display:none
-            void delayedContent.offsetWidth; 
-            
-            // Remove a opacidade 0, fazendo o elemento aparecer suavemente
-            delayedContent.classList.remove('opacity-0');
-            
-            // Reinicializa os ícones para renderizar os que estavam escondidos
-            try {
-                if (typeof lucide !== 'undefined') {
-                    lucide.createIcons();
+            if (typeof smartplayer !== 'undefined' && smartplayer.instances && smartplayer.instances.length > 0) {
+                if (smartplayer.instances[0].video && smartplayer.instances[0].video.currentTime >= SECONDS_TO_DISPLAY) {
+                    isRevealed = true;
+                    clearInterval(checkTime);
+                    console.log("Tempo exato atingido no vídeo! Revelando a página...");
+                    
+                    delayedContent.classList.remove('hidden');
+                    void delayedContent.offsetWidth; 
+                    delayedContent.classList.remove('opacity-0');
+                    
+                    try {
+                        if (typeof lucide !== 'undefined') {
+                            lucide.createIcons();
+                        }
+                    } catch(e) {}
+                    
+                    if (window.innerWidth < 768) {
+                        setTimeout(() => {
+                            const cta = document.getElementById('cta-button');
+                            if(cta) cta.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }, 500); 
+                    }
                 }
-            } catch(e) {}
-
-        }, DELAY_IN_MILLISECONDS);
+            }
+        }, 1000);
     }
 });

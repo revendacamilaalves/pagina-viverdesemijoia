@@ -505,44 +505,46 @@
             if (delayedContent) {
                 console.log("Contagem do VSL ativada (18 minutos e 50 segundos)...");
                 
-                // 18 min = 1080 seg + 50 seg = 1130 segundos = 1.130.000 ms
-                const delayInMilliseconds = 1130000; 
-                const startTime = Date.now();
+                // 10 seg (PARA TESTE)
+                const SECONDS_TO_DISPLAY = 10;
                 let isRevealed = false;
 
-                // Utilizamos setInterval com Date.now() em vez de setTimeout para evitar que 
-                // navegadores de celular (Safari/Chrome) pausem a contagem se a pessoa minimizar a aba
+                // Sincronizando com o tempo real do vídeo do VTurb
                 const checkTime = setInterval(() => {
-                    if (!isRevealed && (Date.now() - startTime >= delayInMilliseconds)) {
-                        isRevealed = true;
-                        clearInterval(checkTime);
-                        console.log("Tempo exato atingido! Revelando a página...");
-                        
-                        // Remove display:none
-                        delayedContent.classList.remove('hidden');
-                        
-                        // Força renderização do navegador
-                        void delayedContent.offsetWidth; 
-                        
-                        // Remove opacidade 0 (faz o fade in)
-                        delayedContent.classList.remove('opacity-0');
-                        
-                        // Renderiza os ícones que estavam escondidos
-                        try { 
-                            if (typeof lucide !== 'undefined') lucide.createIcons(); 
-                        } catch(e) { console.error(e); }
-                        
-                        // Garante que o botão vai aparecer na tela do celular
-                        if (window.innerWidth < 768) {
-                            setTimeout(() => {
-                                const cta = document.getElementById('cta-button');
-                                if(cta) {
-                                    cta.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                                }
-                            }, 500); 
+                    if (isRevealed) return;
+                    
+                    if (typeof smartplayer !== 'undefined' && smartplayer.instances && smartplayer.instances.length > 0) {
+                        if (smartplayer.instances[0].video && smartplayer.instances[0].video.currentTime >= SECONDS_TO_DISPLAY) {
+                            isRevealed = true;
+                            clearInterval(checkTime);
+                            console.log("Tempo exato atingido no vídeo! Revelando a página...");
+                            
+                            // Remove display:none
+                            delayedContent.classList.remove('hidden');
+                            
+                            // Força renderização do navegador
+                            void delayedContent.offsetWidth; 
+                            
+                            // Remove opacidade 0 (faz o fade in)
+                            delayedContent.classList.remove('opacity-0');
+                            
+                            // Renderiza os ícones que estavam escondidos
+                            try { 
+                                if (typeof lucide !== 'undefined') lucide.createIcons(); 
+                            } catch(e) { console.error(e); }
+                            
+                            // Garante que o botão vai aparecer na tela do celular
+                            if (window.innerWidth < 768) {
+                                setTimeout(() => {
+                                    const cta = document.getElementById('cta-button');
+                                    if(cta) {
+                                        cta.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                                    }
+                                }, 500); 
+                            }
                         }
                     }
-                }, 1000); // Checa o relógio absoluto a cada 1 segundo
+                }, 1000); // Checa o tempo do vídeo a cada 1 segundo
                 
             } else {
                 console.error("ERRO CRÍTICO: Div 'delayed-content' não encontrada no HTML!");
