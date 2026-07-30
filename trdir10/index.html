@@ -145,15 +145,20 @@
                         </div>
                     </a>
                 </div>
+                <!-- Indicador de Scroll -->
+                <div class="mt-8 flex flex-col items-center text-white/50 animate-bounce cursor-pointer" onclick="document.getElementById('resumo').scrollIntoView({behavior: 'smooth'})">
+                    <span class="text-sm font-medium tracking-wide mb-1 uppercase text-[#F2D675]/80">Veja mais detalhes abaixo</span>
+                    <i data-lucide="chevron-down" class="w-6 h-6 text-[#F2D675]/80"></i>
+                </div>
             </section>
 
             <!-- White Background Content Wrapper -->
             <div class="bg-base rounded-t-[3rem] overflow-hidden shadow-[0_-20px_50px_rgba(0,0,0,0.5)] relative z-30">
                 
                 <!-- Resumo Enxuto do que recebe -->
-                <section class="py-24 px-6">
+                <section id="resumo" class="pt-12 pb-16 px-6">
                     <div class="max-w-5xl mx-auto">
-                        <div class="text-center mb-12">
+                        <div class="text-center mb-6">
                             <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">Resumo do que está incluso</h2>
                             <p class="text-textSec md:text-lg">Tudo o que você precisa para dominar o mercado.</p>
                         </div>
