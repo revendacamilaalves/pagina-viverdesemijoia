@@ -1,14 +1,12 @@
 {
-  "redirects": [
+  "rewrites": [
     {
       "source": "/comboopen",
-      "destination": "/",
-      "permanent": true
+      "destination": "/"
     },
     {
       "source": "/comboopen/",
-      "destination": "/",
-      "permanent": true
+      "destination": "/"
     }
   ]
 }
