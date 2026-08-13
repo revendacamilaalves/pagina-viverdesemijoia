@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/comboopen",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/comboopen/",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
+}
