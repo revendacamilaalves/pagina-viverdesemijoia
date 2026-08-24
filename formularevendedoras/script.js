@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // CONFIGURAÇÃO DO DELAY DO VSL (Sincronizado com VTurb)
     // ==========================================
     
-    // 3 segundos para teste
-    const SECONDS_TO_DISPLAY = 3;
+    // 27 minutos e 10 segundos
+    const SECONDS_TO_DISPLAY = 1630;
     let isRevealed = false;
 
     const delayedContent = document.getElementById('delayed-content');
