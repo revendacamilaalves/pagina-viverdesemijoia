@@ -948,10 +948,10 @@
 
             const delayedContent = document.getElementById('delayed-content');
             if (delayedContent) {
-                console.log("Contagem do VSL ativada (Delay de teste: 2 segundos)...");
+                console.log("Contagem do VSL ativada (18 minutos e 43 segundos)...");
                 
-                // Delay em segundos (alterado temporariamente para 2 segundos conforme solicitado)
-                const SECONDS_TO_DISPLAY = 2;
+                // 18 min e 43 seg = 1080 seg + 43 seg = 1123 segundos
+                const SECONDS_TO_DISPLAY = 1123;
                 let isRevealed = false;
                 let splideModulesInstance = null;
                 let splideAppInstance = null;
@@ -960,7 +960,7 @@
                     if (isRevealed) return;
                     isRevealed = true;
                     if (checkTime) clearInterval(checkTime);
-                    console.log("Tempo atingido! Revelando a página...");
+                    console.log("Tempo exato atingido no vídeo! Revelando a página...");
 
                     // Remove display:none
                     delayedContent.classList.remove('hidden');
@@ -1041,9 +1041,6 @@
                         }, 500); 
                     }
                 };
-
-                // Fallback de segurança para teste de 2 segundos (garante reveal mesmo se vídeo pausar)
-                setTimeout(revealContent, 2000);
 
                 // Sincronizando com o tempo real do vídeo do VTurb
                 const checkTime = setInterval(() => {
