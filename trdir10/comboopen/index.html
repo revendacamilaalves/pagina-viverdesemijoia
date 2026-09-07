@@ -226,15 +226,118 @@
                     </div>
                 </section>
 
-                <!-- Seção VSL (Veja com seus próprios olhos) -->
-                <section class="py-24 px-6 bg-[#030303] text-white relative overflow-hidden">
+                <!-- Por dentro do Curso (Portal de Alunos) -->
+                <section class="py-20 px-4 md:px-6 bg-[#030303] text-white relative overflow-hidden border-b border-white/5">
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50rem] h-[30rem] bg-gold/5 rounded-full blur-[140px] pointer-events-none"></div>
+                    
+                    <div class="max-w-6xl mx-auto relative z-10">
+                        <div class="text-center mb-10 md:mb-14">
+                            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md text-xs font-medium text-[#F2D675] mb-4 shadow-xl">
+                                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-gold"></i>
+                                Área de Membros Oficial
+                            </div>
+                            <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-4">Veja com seus próprios olhos</h2>
+                            <p class="text-gray-400 md:text-lg max-w-2xl mx-auto">Uma experiência cinematográfica de aprendizado. Arraste para o lado e descubra o que te espera dentro do portal de alunos.</p>
+                        </div>
+
+                        <!-- Card Moldura do Portal -->
+                        <div class="w-full relative rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-[#080808] p-4 md:p-8">
+                            <!-- Cabeçalho do Portal -->
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-white/10 pb-4 mb-6 gap-3">
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"></span>
+                                        <h3 class="text-sm md:text-base font-bold text-white tracking-wide uppercase">Combo de Cursos para Semijoias • Parte 1</h3>
+                                    </div>
+                                    <p class="text-xs md:text-sm text-gray-400 mt-1">Branding, Posicionamento, Fabricantes e Estratégias de Venda escaláveis.</p>
+                                </div>
+                                <div class="self-start sm:self-auto flex items-center gap-1.5 text-xs text-gold font-semibold bg-gold/10 border border-gold/20 px-3.5 py-1.5 rounded-full">
+                                    <i data-lucide="layers" class="w-4 h-4"></i>
+                                    <span>11 Módulos Práticos</span>
+                                </div>
+                            </div>
+
+                            <!-- Splide Carousel dos Módulos -->
+                            <div id="splide-modules" class="splide py-2">
+                                <div class="splide__track">
+                                    <ul class="splide__list">
+                                        <li class="splide__slide px-2">
+                                            <div class="rounded-2xl overflow-hidden border border-white/10 shadow-lg hover:border-gold/50 transition-all transform hover:scale-[1.03]">
+                                                <img src="/assets/modulos/modulo-01-jornada.png" alt="Sua jornada de prosperidade começa aqui" class="w-full h-auto object-cover block" loading="lazy">
+                                            </div>
+                                        </li>
+                                        <li class="splide__slide px-2">
+                                            <div class="rounded-2xl overflow-hidden border border-white/10 shadow-lg hover:border-gold/50 transition-all transform hover:scale-[1.03]">
+                                                <img src="/assets/modulos/modulo-02-mente.png" alt="Programe sua mente para vencer" class="w-full h-auto object-cover block" loading="lazy">
+                                            </div>
+                                        </li>
+                                        <li class="splide__slide px-2">
+                                            <div class="rounded-2xl overflow-hidden border border-white/10 shadow-lg hover:border-gold/50 transition-all transform hover:scale-[1.03]">
+                                                <img src="/assets/modulos/modulo-03-direto-da-fonte.png" alt="Comprando semijoias direto da fonte" class="w-full h-auto object-cover block" loading="lazy">
+                                            </div>
+                                        </li>
+                                        <li class="splide__slide px-2">
+                                            <div class="rounded-2xl overflow-hidden border border-white/10 shadow-lg hover:border-gold/50 transition-all transform hover:scale-[1.03]">
+                                                <img src="/assets/modulos/modulo-04-pre-pos-venda.png" alt="Dicas essenciais de pré e pós venda" class="w-full h-auto object-cover block" loading="lazy">
+                                            </div>
+                                        </li>
+                                        <li class="splide__slide px-2">
+                                            <div class="rounded-2xl overflow-hidden border border-white/10 shadow-lg hover:border-gold/50 transition-all transform hover:scale-[1.03]">
+                                                <img src="/assets/modulos/modulo-05-marketing.png" alt="Marketing para semijoias" class="w-full h-auto object-cover block" loading="lazy">
+                                            </div>
+                                        </li>
+                                        <li class="splide__slide px-2">
+                                            <div class="rounded-2xl overflow-hidden border border-white/10 shadow-lg hover:border-gold/50 transition-all transform hover:scale-[1.03]">
+                                                <img src="/assets/modulos/modulo-06-canais-vendas.png" alt="Canais de vendas escaláveis" class="w-full h-auto object-cover block" loading="lazy">
+                                            </div>
+                                        </li>
+                                        <li class="splide__slide px-2">
+                                            <div class="rounded-2xl overflow-hidden border border-white/10 shadow-lg hover:border-gold/50 transition-all transform hover:scale-[1.03]">
+                                                <img src="/assets/modulos/modulo-07-lista-vip-fabricantes.png" alt="Lista vip fabricantes semijoias" class="w-full h-auto object-cover block" loading="lazy">
+                                            </div>
+                                        </li>
+                                        <li class="splide__slide px-2">
+                                            <div class="rounded-2xl overflow-hidden border border-white/10 shadow-lg hover:border-gold/50 transition-all transform hover:scale-[1.03]">
+                                                <img src="/assets/modulos/modulo-08-lista-prata-925.png" alt="Lista de fabricantes prata 925" class="w-full h-auto object-cover block" loading="lazy">
+                                            </div>
+                                        </li>
+                                        <li class="splide__slide px-2">
+                                            <div class="rounded-2xl overflow-hidden border border-white/10 shadow-lg hover:border-gold/50 transition-all transform hover:scale-[1.03]">
+                                                <img src="/assets/modulos/modulo-09-trafego-pago.png" alt="Tráfego pago para semijoias" class="w-full h-auto object-cover block" loading="lazy">
+                                            </div>
+                                        </li>
+                                        <li class="splide__slide px-2">
+                                            <div class="rounded-2xl overflow-hidden border border-white/10 shadow-lg hover:border-gold/50 transition-all transform hover:scale-[1.03]">
+                                                <img src="/assets/modulos/modulo-10-fornecedor-banhadas.png" alt="O melhor fornecedor de semijoias banhadas" class="w-full h-auto object-cover block" loading="lazy">
+                                            </div>
+                                        </li>
+                                        <li class="splide__slide px-2">
+                                            <div class="rounded-2xl overflow-hidden border border-white/10 shadow-lg hover:border-gold/50 transition-all transform hover:scale-[1.03]">
+                                                <img src="/assets/modulos/modulo-11-economize-no-banho.png" alt="Curso economize 80% no banho" class="w-full h-auto object-cover block" loading="lazy">
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <!-- Indicador de arraste mobile -->
+                            <div class="mt-4 flex items-center justify-center gap-2 text-xs text-gray-500 md:hidden">
+                                <i data-lucide="move-horizontal" class="w-4 h-4 text-gold"></i>
+                                <span>Arraste para o lado para ver todos os módulos</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Seção VSL (Apresentação Completa) -->
+                <section class="py-20 px-6 bg-[#030303] text-white relative overflow-hidden">
                     <!-- Glow background -->
                     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[30rem] bg-gold/10 rounded-full blur-[120px] pointer-events-none"></div>
 
                     <div class="max-w-4xl mx-auto relative z-10">
                         <div class="text-center mb-10 md:mb-12">
-                            <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-4">Veja com seus próprios olhos</h2>
-                            <p class="text-gray-400 md:text-lg max-w-2xl mx-auto">Assista à apresentação completa abaixo e descubra exatamente como aplicar o método no seu negócio.</p>
+                            <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-4">Assista à Apresentação Completa</h2>
+                            <p class="text-gray-400 md:text-lg max-w-2xl mx-auto">Entenda em detalhes como funciona o Sistema 2CMP e o segredo para comprar direto dos fabricantes.</p>
                         </div>
                         
                         <!-- Premium Video Container -->
@@ -505,6 +608,29 @@
             try { 
                 if (typeof lucide !== 'undefined') lucide.createIcons(); 
             } catch(e) { console.error(e); }
+
+            // Inicializa carrossel de módulos do curso
+            try {
+                if (document.getElementById('splide-modules') && typeof Splide !== 'undefined') {
+                    new Splide("#splide-modules", {
+                        type: "loop",
+                        autoplay: true,
+                        perPage: 5,
+                        perMove: 1,
+                        interval: 3000,
+                        speed: 800,
+                        pagination: false,
+                        arrows: true,
+                        gap: '0.75rem',
+                        breakpoints: {
+                            1280: { perPage: 5 },
+                            1024: { perPage: 4 },
+                            768: { perPage: 3 },
+                            480: { perPage: 2 }
+                        }
+                    }).mount();
+                }
+            } catch(e) { console.error("Splide modules error:", e); }
 
             // Custom Slow Smooth Scroll para botões âncora
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
