@@ -129,8 +129,8 @@
             </div>
         </section>
 
-        <!-- DELAYED CONTENT (Initially Hidden) -->
-        <div id="delayed-content" class="hidden opacity-0 transition-opacity duration-1000 ease-in-out">
+        <!-- CONTENT (Immediately Visible) -->
+        <div id="delayed-content">
             
             <!-- Immediate CTA under video -->
             <section id="cta-button" class="pb-6 bg-[#030303] text-center px-4 relative z-20">
@@ -499,80 +499,10 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            console.log("VSL Script: Iniciado");
-            
             // Inicializa ícones visíveis imediatamente
             try { 
                 if (typeof lucide !== 'undefined') lucide.createIcons(); 
             } catch(e) { console.error(e); }
-
-            const delayedContent = document.getElementById('delayed-content');
-            if (delayedContent) {
-                console.log("Contagem do VSL ativada (18 minutos e 43 segundos)...");
-                
-                // 18 min e 43 seg = 1080 seg + 43 seg = 1123 segundos
-                const SECONDS_TO_DISPLAY = 1123;
-                let isRevealed = false;
-
-                // Sincronizando com o tempo real do vídeo do VTurb
-                const checkTime = setInterval(() => {
-                    if (isRevealed) return;
-                    
-                    let currentTime = 0;
-                    
-                    // Tenta obter o tempo via API do smartplayer
-                    if (typeof smartplayer !== 'undefined' && smartplayer.instances && smartplayer.instances.length > 0 && smartplayer.instances[0].video) {
-                        currentTime = smartplayer.instances[0].video.currentTime;
-                    } 
-                    // Fallback 1: Tenta achar a tag de vídeo dentro do elemento do VTurb
-                    else {
-                        const vturbContainer = document.getElementById('vid-67f492608b469a116a77291d');
-                        if (vturbContainer) {
-                            const videoEl = vturbContainer.querySelector('video');
-                            if (videoEl) currentTime = videoEl.currentTime;
-                        }
-                    }
-                    
-                    // Fallback 2: Tenta qualquer tag de vídeo na página
-                    if (currentTime === 0) {
-                        const anyVideo = document.querySelector('video');
-                        if (anyVideo) currentTime = anyVideo.currentTime;
-                    }
-
-                    if (currentTime >= SECONDS_TO_DISPLAY && currentTime > 0) {
-                        isRevealed = true;
-                        clearInterval(checkTime);
-                        console.log("Tempo exato atingido no vídeo! Revelando a página...");
-                        
-                        // Remove display:none
-                        delayedContent.classList.remove('hidden');
-                        
-                        // Força renderização do navegador
-                        void delayedContent.offsetWidth; 
-                        
-                        // Remove opacidade 0 (faz o fade in)
-                        delayedContent.classList.remove('opacity-0');
-                        
-                        // Renderiza os ícones que estavam escondidos
-                        try { 
-                            if (typeof lucide !== 'undefined') lucide.createIcons(); 
-                        } catch(e) { console.error(e); }
-                        
-                        // Garante que o botão vai aparecer na tela do celular
-                        if (window.innerWidth < 768) {
-                            setTimeout(() => {
-                                const cta = document.getElementById('cta-button');
-                                if(cta) {
-                                    cta.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                                }
-                            }, 500); 
-                        }
-                    }
-                }, 1000); // Checa o tempo do vídeo a cada 1 segundo
-                
-            } else {
-                console.error("ERRO CRÍTICO: Div 'delayed-content' não encontrada no HTML!");
-            }
 
             // Custom Slow Smooth Scroll para botões âncora
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
