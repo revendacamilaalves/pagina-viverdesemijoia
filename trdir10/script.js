@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } 
             // Fallback 1: Tenta achar a tag de vídeo dentro do elemento do VTurb
             else {
-                const vturbContainer = document.getElementById('vid-67f492608b469a116a77291d');
+                const vturbContainer = document.getElementById('vid-6aa4a549cd86d9c0b21c0a89');
                 if (vturbContainer) {
                     const videoEl = vturbContainer.querySelector('video');
                     if (videoEl) currentTime = videoEl.currentTime;
